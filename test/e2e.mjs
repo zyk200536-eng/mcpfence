@@ -211,15 +211,16 @@ console.log(
 );
 
 // --- 10. ask mode (interception) ----------------------------------------------
-// Pre-seed a policy: echo pre-approved, get-env explicitly denied. The test
-// runs without a terminal, so unlisted tools must fail closed.
+// Pre-seed a policy: echo pre-approved, get-env explicitly denied, and a
+// default of "deny" so unlisted tools are blocked without any user prompt
+// (the test environment is unattended - no popups, no terminal).
 import { mkdirSync, writeFileSync } from "node:fs";
 const askName = "e2e-ask";
 const askDir = path.join(serverRoot, askName);
 mkdirSync(askDir, { recursive: true });
 writeFileSync(
   path.join(askDir, "policy.json"),
-  JSON.stringify({ default: "ask", tools: { echo: "allow", "get-env": "deny" } }),
+  JSON.stringify({ default: "deny", tools: { echo: "allow", "get-env": "deny" } }),
 );
 
 const askTransport = new StdioClientTransport({
@@ -260,15 +261,15 @@ if (denied.isError !== true || !JSON.stringify(denied.content).includes("denied"
 }
 console.log("PASS: ask mode - explicitly denied tool blocked");
 
-// Unlisted tool: no terminal in this environment -> fail closed.
+// Unlisted tool: default "deny" in the seeded policy -> blocked without prompt.
 const fallback = await askClient.callTool({
   name: "toggle-subscriber-updates",
   arguments: { enabled: true },
 });
 if (fallback.isError !== true) {
-  throw new Error(`unlisted tool should fail closed, got: ${JSON.stringify(fallback)}`);
+  throw new Error(`unlisted tool should be denied by default, got: ${JSON.stringify(fallback)}`);
 }
-console.log("PASS: ask mode - unlisted tool denied when no terminal answers");
+console.log("PASS: ask mode - unlisted tool denied by default-deny policy");
 
 await askClient.close();
 

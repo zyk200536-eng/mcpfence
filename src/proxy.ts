@@ -209,7 +209,7 @@ export async function runProxy(options: {
       if (mode === "ask" && policy.decide(toolName) !== "allow") {
         let allowed = false;
         if (policy.decide(toolName) === "ask") {
-          const answer = promptToolPermission({
+          const answer = await promptToolPermission({
             server: label,
             tool: toolName,
             signal: extra.signal,
