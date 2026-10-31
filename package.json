@@ -1,0 +1,28 @@
+{
+  "name": "mcpfence",
+  "version": "0.1.0",
+  "description": "Local-first MCP permission firewall: observe, tighten, intercept. Sits between your Agent client and MCP servers.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "mcpfence": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "test": "node test/e2e.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/server-everything": "^2.1.0",
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}
