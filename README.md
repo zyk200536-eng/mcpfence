@@ -31,7 +31,7 @@ ever actually called?** Then it enforces the answer.
 ## Quickstart
 
 ```bash
-npm install -g mcpfence   # not yet published; see Development below
+npm install -g github:zyk200536-eng/mcpfence
 
 # Wrap any stdio MCP server - just prefix the original command:
 mcpfence run -- npx -y @modelcontextprotocol/server-filesystem ~/proj
@@ -118,7 +118,7 @@ is no telemetry, no account, no network listener.
 ## Development
 
 ```bash
-git clone <repo> && cd mcpfence
+git clone https://github.com/zyk200536-eng/mcpfence && cd mcpfence
 npm install
 npm run build
 npm test        # end-to-end suite against the official server-everything
