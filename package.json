@@ -22,6 +22,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "prepare": "npm run build",
     "dev": "tsx src/index.ts",
     "test": "node test/e2e.mjs"
   },
