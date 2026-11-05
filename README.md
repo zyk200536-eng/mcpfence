@@ -135,5 +135,5 @@ in both `observe` and `ask` modes; it needs no network after `npm install`.
 - [ ] Server identity pinning (manifest hash, like `package-lock` for MCP)
 
 ## License
-
+[![M8ven Score](https://m8ven.ai/badge/mcp/zyk200536-eng-mcpfence-k4eqk0?v=c6a813eb6aba2f7492d97033b374942d)](https://m8ven.ai/mcp/zyk200536-eng-mcpfence-k4eqk0?s=readme)
 MIT
